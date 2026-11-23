@@ -1,0 +1,36 @@
+/* ---------- カード（紙に印刷されたカード） ---------- */
+.card{position:relative;background:var(--paper);border:2px solid var(--ec,#585e62);border-radius:5px;color:var(--ink);display:flex;flex-direction:column;
+  box-shadow:0 1px 0 rgba(0,0,0,.4),0 5px 10px rgba(0,0,0,.35);background-image:linear-gradient(180deg,rgba(255,255,255,.25),transparent 40%)}
+.card.t{--ec:#55595c}
+.plate{background:var(--ec);color:#f7f0e1;display:flex;align-items:center;gap:4px;padding:3px 5px 3px 3px;min-height:24px}
+.plate .nm{font-family:var(--minc);font-weight:800;font-size:13px;line-height:1.1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;letter-spacing:.02em}
+.coin{flex:none;width:18px;height:18px;border-radius:50%;background:#2d4c60;color:#efe6d2;border:1.5px solid #ddd0b0;display:inline-flex;align-items:center;justify-content:center;font:700 11px var(--goth)}
+.cbody{flex:1;min-height:0;padding:3px 6px 2px;display:flex;flex-direction:column;gap:2px;overflow:hidden}
+.ctype{font-size:9.5px;color:var(--ink2);display:flex;justify-content:space-between;align-items:center;gap:3px;letter-spacing:.04em}
+.spk{font-size:8.5px;border:1px solid #8a6a2a;color:#7d5e20;padding:0 3px;border-radius:2px;letter-spacing:0}
+.spk.ok{background:#7d5e20;color:#f6efe0}
+.crt{font-size:9.5px;line-height:1.3;color:var(--ink3)}
+.crt.on{color:var(--ink);font-weight:700}
+.crt.on::before{content:'共鳴';display:inline-block;font-size:8px;background:var(--brass);color:var(--ink);padding:0 3px;margin-right:3px;border-radius:2px;vertical-align:1px}
+.ctx{font-size:10px;line-height:1.35}
+.cst{display:flex;justify-content:space-between;align-items:flex-end;padding:0 4px 4px}
+.cst span{display:flex;align-items:baseline;gap:2px;min-width:26px;height:21px;padding:0 5px;border-radius:2px;color:#f7f0e1;font:800 15px/21px var(--minc)}
+.cst i{font:700 7px var(--goth);font-style:normal;opacity:.75}
+.cst .atk{background:#74301f}.cst .hp{background:#33573b}
+.cst .atk.up{box-shadow:0 0 0 2px var(--brass)}
+.cst .hp.hurt{background:#8b2b26}
+.seal{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;border-radius:3px;font:800 12px var(--minc);color:#f7f0e1;border:1.5px solid var(--paper);box-shadow:0 0 0 1px rgba(0,0,0,.35);flex:none}
+.s-fang{background:#a8402f}.s-shield{background:#3b5f86}.s-star{background:#a8801f}.s-heart{background:#a5506a}
+.s-rainbow{background:linear-gradient(180deg,#a8402f 0 20%,#a8801f 20% 40%,#4a7236 40% 60%,#3b5f86 60% 80%,#56406e 80%)}
+.seal.tab{position:absolute;top:50%;margin-top:-11px;width:22px;height:22px;z-index:3}
+.seal.tab.l{left:-10px}.seal.tab.r{right:-10px}
+.ctag{position:absolute;top:-8px;right:6px;font-size:9px;font-weight:700;padding:1px 5px;border-radius:2px;background:#3a3f44;color:#e9e1cf;z-index:4;letter-spacing:.04em}
+.ctag.go{background:var(--brass);color:var(--ink)}
+.card.res{box-shadow:0 0 0 2px var(--brass),0 5px 10px rgba(0,0,0,.35)}
+
+
+/* 場のモンスターの状態（封印・効果けし・すくみ・バリア・ATK-・このターンだけのHP）。左上に小さな札 */
+.cfx{position:absolute;top:-8px;left:6px;display:flex;gap:2px;z-index:4;pointer-events:none}
+.cfx i{font:700 9px/13px var(--minc);font-style:normal;padding:0 4px;border-radius:2px;background:#f7f0e1;color:var(--ink);box-shadow:0 0 0 1.2px var(--ink)}
+/* くわしい画面の、効果の系統（牙・盾・星・心・特別／攻撃・妨害・守り・共鳴・展開） */
+.dic{display:inline-block;font-size:10.5px;font-weight:700;padding:0 5px;margin-right:5px;border-radius:2px;background:#3a3f44;color:#f7f0e1;vertical-align:1px}

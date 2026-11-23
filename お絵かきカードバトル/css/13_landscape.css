@@ -1,0 +1,132 @@
+/* ---------- 対戦画面：スマホの横持ち（低くて横長の画面）----------
+   左：相手の情報・番とログ・自分の情報とボタン ／ まん中：場2段 ／ 右：手札（縦にスクロール）
+   05_game.css の縦1列と「横長の画面」の両方を上書きするので、最後に読みこむ。
+   #app.gamew＝対戦中。ダイアログの直しも #app.gamew~#modal で対戦中だけに効かせる */
+@media (orientation:landscape) and (max-height:560px){
+  #app.gamew{max-width:1100px;padding-left:env(safe-area-inset-left);padding-right:env(safe-area-inset-right)}
+  .game{display:grid;grid-template-columns:clamp(160px,27%,224px) minmax(0,1fr) auto;grid-template-rows:minmax(0,1fr) minmax(0,1fr);gap:8px 6px;
+    min-height:0;padding:6px 4px calc(6px + env(safe-area-inset-bottom)) 6px}
+  .game>.lane.op{grid-column:2;grid-row:1}
+  .game>.lane.me{grid-column:2;grid-row:2}
+  .game>.hand{grid-column:3;grid-row:1/-1}
+
+  /* 左の列 */
+  .game>.gside{grid-column:1;grid-row:1/-1;display:flex;flex-direction:column;gap:4px;min-width:0;min-height:0}
+  .gside>.pinfo{flex:none;display:flex;flex-wrap:wrap;align-items:center;gap:2px 8px;padding:3px 6px}
+  /* 1段目は名前とライフだけ（ゲージは下の段へ）。手番は「手番」の札のかわりに色で */
+  .gside .who{flex:none;width:calc(100% - 68px);flex-wrap:wrap;gap:1px 4px}
+  .gside .who .nm,.gside .pinfo.net .who .nm{min-width:0;max-width:100%;font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .gside .who .tn{display:none}
+  .gside>.pinfo.cur{background:#fff4d8;border-color:var(--pc)}
+  .gside .who .olnet{flex:none}
+  .gside .lifebox{flex:none;gap:3px;margin-left:auto}
+  .gside .lifebox b{font-size:21px;min-width:22px;text-align:right}
+  .gside .gk{gap:2px;min-width:0}
+  .gside .gk small{white-space:nowrap;letter-spacing:0;line-height:1.2}
+  .gside .gems{gap:2px}
+  .gside .coins{gap:1px}
+  .gside .cn{width:9px;height:9px}
+  .gside .cnt{width:100%;margin:0;text-align:left;font-size:9.5px;line-height:1.25;letter-spacing:0;white-space:nowrap}
+  .gside .cnt br{display:none}
+  .gside .acts{display:flex;flex-wrap:wrap;gap:4px;margin:2px 0 1px}
+  .gside .acts .btn{flex:1 1 0;min-width:0;min-height:30px;padding:2px 1px;font-size:11.5px;letter-spacing:0;white-space:nowrap;box-shadow:1px 2px 0 var(--pencil);border-width:1.5px}
+  .gside .acts .btn small{font-size:8.5px;white-space:nowrap;margin:0}
+  .gside .acts .btn.pri{flex:1 0 100%;min-height:34px;padding:3px;font-size:14px}
+
+  /* 左のまん中：番・フェイズ・ログ */
+  .gside>.mid{position:relative;flex:1 1 0;min-height:0;margin:0;overflow:hidden;display:grid;grid-template-columns:minmax(0,1fr) auto auto;grid-template-rows:auto auto minmax(0,1fr);
+    align-items:center;gap:2px 4px;padding:3px;background:rgba(255,253,247,.6);border:1.5px dashed var(--line2);border-radius:4px}
+  .gside .mid .who2{grid-column:1;grid-row:1;min-width:0;padding:0;font-size:12px;line-height:1.15;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .gside .mid .who2 small{font-size:9px;margin:0;letter-spacing:0}
+  .gside .mid>.btn[data-act="atkall"]{grid-column:2;grid-row:1;order:0;align-self:center;min-height:30px;padding:2px 6px;font-size:11px;letter-spacing:0;white-space:nowrap}
+  .gside .mbtn{position:static;grid-column:3;grid-row:1}
+  .gside .track{grid-column:1/-1;grid-row:2;align-self:center;justify-self:start;font-size:9.5px;line-height:1.1;gap:2px}
+  .gside .track span{padding:1px 4px}
+  .gside .lg{grid-column:1/-1;grid-row:3;align-self:stretch;min-height:0;max-height:none;display:flex;flex-direction:column;justify-content:flex-end;gap:0;order:0;padding:0;border:0;font-size:10.5px;line-height:1.3;overflow:hidden}
+  .gside .lg div{flex:none;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .gside .lg .old,.gside .lg h6{display:none}
+  .gside .lg .hint{order:9;margin:0;padding:0;background:none;white-space:normal;line-height:1.2}
+
+  /* 出す場所・アタック順をえらんでいる間は、自分のボタンをしまって帯を広く */
+  .gside.sel .acts{display:none}
+  .gside .mid.tgt,.gside .mid.atkbar{display:flex;flex:1 1 0;flex-direction:column;align-items:stretch;gap:4px;padding:4px;background:#fff4d8;border:1.5px solid var(--pencil)}
+  .gside .mid.tgt .pm{flex:1 1 0;min-height:0;overflow-y:auto;font-size:11.5px;line-height:1.35}
+  .gside .mid.atkbar .pm{font-size:10.5px;line-height:1.3}
+  .gside .mid.tgt .btn{flex:none;min-height:32px;padding:3px}
+  .gside .atkb{display:flex;flex:none;flex-direction:row;gap:4px}
+  .gside .atkb .btn{flex:1;white-space:nowrap;padding:3px 2px;font-size:11.5px;letter-spacing:0}
+  .gside .atkb .btn.red{flex:2}
+
+  /* 場 */
+  .game>.lane{height:auto;min-height:0;max-height:none;padding:7px 12px;grid-template-columns:minmax(0,1fr) 20px minmax(0,1fr) 20px minmax(0,1fr);grid-template-rows:minmax(0,1fr)}
+  .game .slot{min-height:0}
+  .game .slot .slb{font-size:12px;letter-spacing:.1em}
+  /* 場のカードの部品は、カードの大きさに合わせて 14_cardframe.css が決める */
+  /* 2段の帯がすぐ近いので、左右にずらす */
+  .game>.lane.op .fullb{left:32%}
+  .game>.lane.me .fullb{left:68%}
+
+  /* 右：手札 */
+  .game>.hand{height:auto;min-height:0;width:calc(78px + 16px);display:grid;grid-template-columns:78px;grid-auto-rows:108px;align-content:start;gap:10px;
+    padding:9px 8px 5px;overflow-x:hidden;overflow-y:auto;overscroll-behavior:contain;touch-action:pan-y;border-left:1.5px dashed var(--line2)}
+  .game>.hand .hcw{zoom:1}
+  .game>.hand>.sub{align-self:center;text-align:center}
+
+  /* カードをタップしたとき：左に説明、右にボタン */
+  #app.gamew~#sheet .sh{top:4px;max-height:none;display:grid;grid-template-columns:minmax(0,1fr) clamp(150px,32%,230px);grid-template-rows:minmax(0,1fr);gap:10px;overflow:hidden;
+    width:min(760px,calc(100% - env(safe-area-inset-left) - env(safe-area-inset-right)));padding:8px 10px calc(8px + env(safe-area-inset-bottom))}
+  #app.gamew~#sheet .dcard{align-self:start;max-height:100%;overflow-y:auto;overscroll-behavior:contain}
+  #app.gamew~#sheet .dcard>.plate{position:sticky;top:0;z-index:1}
+  #app.gamew~#sheet .dart{height:min(150px,32vh)}
+  #app.gamew~#sheet .sbtns{min-height:0;margin:0;overflow-y:auto;justify-content:flex-end;justify-content:safe flex-end;gap:7px;padding:0 3px 4px 0}
+  #app.gamew~#sheet .sbtns .btn{flex:none;padding:9px 6px;font-size:14px}
+
+  /* 対戦中のダイアログ：ボタンはいつも見える所に */
+  #app.gamew~#modal.show:not(:empty){padding:5px max(8px,env(safe-area-inset-right)) calc(5px + env(safe-area-inset-bottom)) max(8px,env(safe-area-inset-left))}
+  #app.gamew~#modal .mbox:not(.full){width:min(760px,100%);max-height:100%;padding:8px 12px 0}
+  #app.gamew~#modal .mbox:not(.full) .mbtns{position:sticky;bottom:0;z-index:9;margin-top:4px;padding:6px 0 8px;background:#fffdf7}
+  #app.gamew~#modal .mbox:not(.full) .mbtns .btn{min-width:100px;padding:8px 5px}
+  #app.gamew~#modal .mbox.full{height:100%}
+  #app.gamew~#modal .gq .big{font-size:15px;margin:2px 0 4px}
+  #app.gamew~#modal .gq p{font-size:11.5px;line-height:1.35;margin:2px 0}
+  #app.gamew~#modal .gq .cmp{margin-top:4px}
+  #app.gamew~#modal .gq .cmp div{padding:2px 6px}
+  #app.gamew~#modal .gq .cmp b{display:inline;font-size:22px;margin:0 6px}
+  #app.gamew~#modal .pick{margin-top:2px}
+  #app.gamew~#modal .coin2 p{margin:4px 0;line-height:1.45}
+  #app.gamew~#modal .res{padding:0}
+  #app.gamew~#modal .res .seal2{font-size:28px;margin:8px 0}
+  #app.gamew~#modal .res p{margin:4px 0}
+
+  /* 必殺技・タクティクスのカットイン */
+  #app.gamew~.cutin{top:18%;padding:7px calc(12px + env(safe-area-inset-right)) 7px calc(12px + env(safe-area-inset-left))}
+  #app.gamew~.cutin .ci-t b{font-size:21px}
+}
+/* 幅があれば手札は2列 */
+@media (orientation:landscape) and (max-height:560px) and (min-width:740px){
+  .game>.hand{width:calc(78px*2 + 10px + 16px);grid-template-columns:repeat(2,78px)}
+  .game>.hand>.sub{grid-column:1/-1}
+}
+/* 幅のせまい横持ち：場のカードの名前を小さく */
+@media (orientation:landscape) and (max-height:560px) and (max-width:699px){
+  .gside .acts .btn small{font-size:7.6px;letter-spacing:-.02em}
+}
+/* とても低い画面（小型スマホ・ブラウザのバーあり）：ゲージとエナジーは数字だけ */
+@media (orientation:landscape) and (max-height:359px){
+  .gside .gems,.gside .coins{display:none}
+}
+@media (orientation:landscape) and (max-height:299px){
+  .game{gap:6px}
+  .gside>.pinfo{gap:1px 7px;padding:2px 5px}
+  .gside .lifebox b{font-size:18px}
+  .gside .acts{gap:3px}
+  .gside .acts .btn{flex:.72 1 0;font-size:9.5px;padding:2px 0}
+  .gside .acts .btn[data-act="recharge"]{flex-grow:1.12}
+  .gside .acts .btn small{display:none}
+  .gside .acts .btn.pri{flex:1.16 1 0;min-height:30px;font-size:10px;padding:2px 0}
+  .gside .track{display:none}
+  .gside .mid.atkbar{gap:2px;padding:2px 3px}
+  .gside .mid.atkbar .pm{font-size:9.5px;line-height:1.2;letter-spacing:0}
+  .gside .mid.atkbar .atkb .btn{min-height:30px}
+  .game .slot .card.m:not(.fa) .ctype{display:none}
+}

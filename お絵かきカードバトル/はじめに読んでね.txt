@@ -1,0 +1,99 @@
+お絵かきカードバトル（ファイル分け版）
+（もとの名前：トリニティ・レゾナンス）
+
+あそびかた
+  index.html をダブルクリックしてブラウザで開きます。オンライン対戦とXへの投稿のほかは、インターネットがなくても動きます
+  （文字の形だけ Google Fonts を使い、つながっていないときはふつうの字になります）。
+  フォルダの中のファイルは、置き場所を変えずにまとめて持ち運んでください。
+
+オンライン対戦（2人ともインターネットと、同じ版のこのゲームが必要です）
+  1. タイトルの「オンライン対戦」で、名前とデッキをえらびます。
+  2. ひとりが「部屋を作る」を押して、出てきた8文字の部屋番号を相手に教えます。
+  3. もうひとりが「部屋に入る」に番号を入れると、はじまります。
+  ・お絵かきカードも使えます。出したカードの絵は、相手の画面にも出ます。
+  ・とちゅうで再読みこみしても、もとの対戦にもどります。画面をとじたときは、
+    「オンライン対戦」の「とちゅうの対戦」からもどれます（2日間）。
+  ・降参はメニュー（≡）から。終わったら同じ相手と「もう一度」もできます。
+  ・通信は無料の公開中継（EMQX・HiveMQ・Eclipse Mosquitto）を通ります。中身は部屋番号から
+    作った鍵で暗号化するので、番号は相手のほかに教えないでください。
+  ・中継は無料の借りものなので、止まっていたり、学校や会社の回線では使えないことがあります。
+
+作ったカードをXに投稿（インターネットとXのアカウントが必要です）
+  「お絵かきカード」で作ったカードをタップして「Xに投稿」を押します。
+  スマホ：共有画面が出たらXをえらびます（画像と文が渡ります）。
+  パソコン：画像がコピーされてXがひらくので、投稿画面に貼り付けます（Ctrl+V、Mac は ⌘+V）。
+  コピーや共有ができないブラウザでは画像が保存されるので、投稿画面で添付してください。
+
+中身
+  index.html                 画面のわく。下の css と js を順番に読みこむ
+  css/
+    01_base.css              色・字・全体の下地
+    02_card.css              カード（紙に印刷されたカード）
+    03_title.css             タイトル
+    04_deck.css              デッキ選択
+    05_game.css              対戦画面
+    06_sheet.css             カードの詳細シート
+    07_dialog.css            ダイアログ
+    08_effects.css           演出
+    09_drawcard.css          お絵かきカード
+    10_deckedit.css          デッキ編成
+    11_share.css             Xに投稿する画面
+    12_online.css            オンライン対戦
+    13_landscape.css         対戦画面のスマホ横持ち（いつも最後に読みこむ）
+  js/
+    doodlenet/weights.js     絵を見分けるしくみの中身（数字のかたまり。約720KB）
+    doodlenet/weights_extra.js  学習し直す前の中身（ハート・ひと など35種類の見分けに使う。約720KB）
+    doodlenet/doodlenet.js   絵を見分ける計算
+    data/rules_cards_decks.js ルールの数字・カード・デッキ・必殺技・共鳴効果
+    game/engine.js           ルールの処理（召喚・アタック・ターンなど）
+    game/cpu.js              CPU の考え方
+    ui/sound.js              音
+    ui/render.js             画面をかく
+    ui/effects.js            演出
+    ui/dialogs.js            ダイアログ
+    ui/flow.js               ゲームの進行
+    ui/target.js             対象をえらぶ
+    ui/menus.js              メニュー・ルール・カード一覧
+    drawcard/util.js         お絵かきカード：道具（ペンの色・乱数など）
+    drawcard/names.js        お絵かきカード：名前の材料
+    drawcard/labels.js       お絵かきカード：380種類の名前・グループ・向き
+    drawcard/templates.js    お絵かきカード：おてほん（なぞる下絵）14しゅるい
+    drawcard/pad.js          お絵かきカード：かく紙（ペン・まる・しかく・まっすぐ・手ぶれ補正・もどす/やりなおす）
+    drawcard/analyze.js      お絵かきカード：線の形を測る
+    drawcard/recognize.js    お絵かきカード：何の絵か当てる
+    drawcard/moves.js        お絵かきカード：何の絵かに合った技と能力（タイプ・技名・とくべつな絵）
+    drawcard/know_life.js    お絵かきカード：物ごとの知識（どうぶつ・しょくぶつ・たべもの）。名前・能力・技・説明
+    drawcard/know_world.js   お絵かきカード：物ごとの知識（しぜん・のりもの・きかい・がっき・スポーツ）
+    drawcard/know_things.js  お絵かきカード：物ごとの知識（どうぐ・いえのもの・からだ・オリジナルの体つき）
+    drawcard/know.js         お絵かきカード：物ごとの知識を読む
+    drawcard/wordsense_data.js  お絵かきカード：日本語らしい音の並び・名前のかぶりよけの学習結果
+    drawcard/wordsense.js    お絵かきカード：学習結果の使い方
+    drawcard/LICENSE_data.txt   学習に使ったデータのライセンス（消さないでください）
+    drawcard/naming.js       お絵かきカード：名前・分類・能力・技の選び方
+    drawcard/makecard.jsお絵かきカード：カードにする（コスト・ATK/HP・印・効果・名前）
+    drawcard/tactics.js      お絵かきカード：絵からタクティクス（使い切りカード）を作る
+    drawcard/storage.js      お絵かきカード：保存とお絵かきデッキ
+    drawcard/share.js        お絵かきカード：投稿用の画像づくりとXへの投稿
+    drawcard/screens.js      お絵かきカード：アトリエとかく画面
+    ui/deckedit.js           デッキ編成（自分のデッキを作る・保存は localStorage）
+    ui/input.js              タップしたときの動き
+    online/cards.js          オンライン対戦：やりとりするカードと、その検査
+    online/relay.js          オンライン対戦：通信（中継・暗号・送り直し）
+    online/match.js          オンライン対戦：1試合の進行と、手の検査
+    online/session.js        オンライン対戦：部屋・保存・再開
+    online/screens.js        オンライン対戦：画面
+    dev/sim.js            テスト用（index.html?sim=90 で CPU どうしの対戦の数字）
+    main.js                  起動
+
+js のファイルは index.html に書いた順に読みこまれ、ぜんぶで一つのプログラムとして動きます。
+ファイルの順番を入れかえたり、ファイルを消したりすると動かなくなることがあります。
+
+絵の見分け：ml5.js の DoodleNet（Google Quick, Draw! データセット）をもとに、
+TU Berlin のスケッチ集（Eitz, Hays, Alexa 2012, CC BY 4.0）と
+HASYv2（Martin Thoma 2017, ODbL）の手がきの絵で追加学習しています。
+さらに Quick, Draw! データセット（Google, CC BY 4.0）の約26万枚（うまく認識されなかった絵を含む）で
+下手な絵・手ぶれした絵に強くなるよう学習し直しました（js/doodlenet/weights.js）。
+カードの名前づけには、Mozc の公開辞書（Google・NAIST IPAdic・ICOT ほか）から学習した
+かなの並びの統計と、Wikidata（CC0）の名前のハッシュ（かぶりよけ）を使っています。
+ライセンスの全文は js/drawcard/LICENSE_data.txt。X などの投稿は使っていません。
+weights_extra.js は学習し直す前の重みで、Quick, Draw! にない35種類の見分けに使っています。

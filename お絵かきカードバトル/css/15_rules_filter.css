@@ -1,0 +1,154 @@
+/* ---------- いつでももどれる・とじられる ---------- */
+/* ダイアログ：下のボタンはいつも見える（中身だけ動く）。長いものは上にも × */
+.mbox{padding-bottom:0}
+/* 中身（カードの印・番号など）は1つの重なりにまとめ、上下の帯より手前に出ないように */
+.mbox .clist,.mbox .rpage,.mbox [data-fgrp]{position:relative;z-index:0}
+.mbox>.mbtns{position:sticky;bottom:0;z-index:30;margin-top:10px;padding:10px 0 calc(16px + env(safe-area-inset-bottom));background:#fffdf7}
+.mbox.full{padding-bottom:18px}
+.mbox.full>.mbtns{position:static;background:none;padding-bottom:0}
+.mbox:has(.mhead){padding-top:0}
+.mhead{position:sticky;top:0;z-index:31;display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:0 -18px 6px;padding:12px 18px 9px;background:#fffdf7;border-bottom:2px dashed var(--line2)}
+.mhead h3{flex:1;min-width:0;margin:0}
+.mhead>.flt,.mhead>.rtabs{flex-basis:100%}
+.mx{flex:none;width:38px;height:38px;padding:0;border:2px solid var(--pencil);border-radius:50%;background:#fff;color:var(--ink);font:400 24px/1 var(--minc);box-shadow:1px 2px 0 var(--pencil);cursor:pointer}
+.mx:active{transform:translate(1px,2px);box-shadow:none}
+.mbox.rulebox,.mbox.listbox{width:min(720px,100%)}
+/* 画面：もどる・決定の列は下にはりつける */
+.deckscr{padding-bottom:0}
+.deckscr>.go{position:sticky;bottom:0;z-index:5;margin:20px -14px 0;padding:10px 14px calc(12px + env(safe-area-inset-bottom));background:var(--mat);border-top:2px dashed var(--line2)}
+
+/* ---------- しぼりこみ ---------- */
+[data-fid][hidden],[data-fgrp][hidden],.flt0[hidden],.rpage[hidden]{display:none!important}
+.flt{display:flex;flex-direction:column;gap:6px}
+.fltq{display:flex;gap:6px;align-items:stretch}
+.fltin{flex:1;min-width:0;display:flex;align-items:center;gap:6px;padding:0 10px;background:#fff;border:2px solid var(--pencil);border-radius:20px}
+.fltin svg{flex:none;width:17px;height:17px;fill:none;stroke:var(--ink2);stroke-width:2.4;stroke-linecap:round}
+.fltin input{flex:1;min-width:0;border:0;outline:0;background:none;padding:7px 0;font:16px var(--goth);color:var(--ink);user-select:text;-webkit-user-select:text}
+.fltop{flex:none;padding:6px 12px;font-size:13px;box-shadow:1px 2px 0 var(--pencil);display:flex;align-items:center;gap:5px}
+.fltop.on{background:var(--brass)}
+.fltc:empty{display:none}
+.fltc{display:inline-flex;align-items:center;justify-content:center;min-width:18px;height:18px;border-radius:9px;background:var(--verm);color:#fff;font:700 11px/1 var(--goth)}
+.fltp:empty{display:none}
+.fltp{display:flex;flex-direction:column;gap:5px;padding:7px 9px;max-height:46vh;overflow-y:auto;background:rgba(255,253,247,.9);border:1.5px solid var(--line2);border-radius:8px}
+.fltr{display:flex;align-items:flex-start;gap:8px}
+.fltl{flex:none;width:3.2em;padding-top:5px;font-size:12px;font-weight:700;color:var(--ink2)}
+.fltcs{display:flex;flex-wrap:wrap;gap:4px}
+.fch{display:inline-flex;align-items:center;gap:3px;min-height:28px;padding:2px 8px;border:1.5px solid var(--line2);border-radius:15px;background:#fff;color:var(--ink);font:12.5px var(--goth);cursor:pointer}
+.fch:has(.seal),.fch:has(.fel){padding-left:3px}
+.fch.on{border-color:var(--pencil);background:var(--brass);font-weight:700;box-shadow:1px 1.5px 0 var(--pencil)}
+.fch .seal{width:18px;height:18px;border-width:1.5px}
+.fel{display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;border-radius:50%}
+.fel .ei{width:12px;height:12px;fill:#fff}
+.fltend{justify-content:space-between;align-items:center}
+.fltn{font-size:12px;color:var(--sub)}
+.fltbs{display:flex;gap:6px}
+.fltclr{padding:5px 12px;font-size:12px;box-shadow:1px 2px 0 var(--pencil)}
+.fltclr.ghost{box-shadow:none}
+.edhead .flt .fltin input{padding:5px 0}
+.flt0{margin:18px 0;text-align:center}
+
+/* ---------- ルール ---------- */
+.rtabs{display:grid;grid-template-columns:repeat(6,1fr);gap:6px;padding-bottom:2px}
+@media (max-width:560px){.rtabs{grid-template-columns:repeat(3,1fr)}}
+.rtabs .btn{padding:6px 4px;font-size:13px;box-shadow:1px 2px 0 var(--pencil);white-space:nowrap}
+.mbox .rtabs .btn.on,.mbox .fltop.on,.edhead .fltop.on{background:var(--brass)}
+.rules h4{margin:18px 0 8px}
+.rpage>h4:first-child{margin-top:6px}
+.rcap{font-size:12.5px!important;color:var(--ink2);margin:6px 0 0!important}
+.rlist{padding-left:18px}
+.rui{width:26px;height:26px;fill:var(--ink2);flex:none}
+.rui.big{width:40px;height:40px}
+.rui.red{fill:var(--verm)}
+.rui.ln{fill:none;stroke:var(--ink2);stroke-width:1.9;stroke-linejoin:round;stroke-linecap:round}
+/* タイル */
+.rtiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:8px}
+.rtiles.three{grid-template-columns:repeat(auto-fit,minmax(160px,1fr))}
+.rtile{display:flex;align-items:center;gap:10px;padding:10px 12px;background:#fff;border:2px solid var(--pencil);border-radius:8px 6px 9px 6px;box-shadow:2px 3px 0 rgba(59,52,44,.25)}
+.rtile b{display:block;font:15px/1.35 var(--minc);color:var(--ink)}
+.rtile span{display:block;font-size:12px;line-height:1.5;color:var(--ink2);margin-top:2px}
+.rsx .seal{width:30px;height:30px}
+/* カードの見かた */
+.rana{display:flex;gap:22px;align-items:center;justify-content:center;flex-wrap:wrap;padding:6px 0}
+.ranac{position:relative;padding:0}
+.ranac .card.big{--bh:250px}
+.rno{position:absolute;z-index:6;transform:translate(-50%,-50%);width:22px;height:22px;border-radius:50%;background:var(--pencil);color:#fff;font:700 12px/22px var(--goth);font-style:normal;text-align:center;box-shadow:0 0 0 2px #fff}
+.ranal{margin:0;padding:0;list-style:none;counter-reset:a;display:flex;flex-direction:column;gap:5px;min-width:220px;flex:1;max-width:320px}
+.ranal li{counter-increment:a;display:flex;align-items:baseline;gap:6px;font-size:12.5px!important;color:var(--ink2);margin:0!important}
+.ranal li::before{content:counter(a);flex:none;width:19px;height:19px;border-radius:50%;background:var(--pencil);color:#fff;font:700 11px/19px var(--goth);text-align:center;align-self:center}
+.ranal b{color:var(--ink);font-family:var(--minc);font-weight:400;font-size:14px;margin-right:2px}
+/* ターンの流れ */
+.rflow{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:0}
+.rflow li{position:relative;display:flex;gap:12px;padding:0 0 12px;margin:0!important}
+.rflow li:not(:last-child)::after{content:'';position:absolute;left:16px;top:34px;bottom:2px;border-left:2.5px dashed var(--line2)}
+.rflow i{flex:none;width:34px;height:34px;border-radius:50%;border:2px solid var(--pencil);background:var(--brass);font:400 18px/30px var(--minc);font-style:normal;text-align:center}
+.rflow b{font:16px var(--minc)}
+.rflow p{margin:2px 0 0!important}
+.renergy{display:flex;align-items:flex-end;gap:6px;height:92px;padding:0 4px;justify-content:center}
+.renergy div{display:flex;flex-direction:column;align-items:center;justify-content:flex-end;width:24px;height:100%}
+.renergy i{display:block;width:18px;background:var(--en);border:1.5px solid var(--pencil);border-bottom:0;border-radius:3px 3px 0 0}
+.renergy small{font-size:11px;color:var(--sub);border-top:1.5px solid var(--pencil);width:100%;text-align:center}
+/* 向かい合う列 */
+.rboard{display:flex;flex-direction:column;align-items:center;gap:4px}
+.rlane{display:flex;align-items:center;gap:8px}
+.rwho{width:3em;font:13px var(--minc);text-align:right}
+.rlane.op .rwho{color:var(--op)}.rlane.me .rwho{color:var(--me)}
+.rslot{width:68px;height:46px;display:flex;align-items:center;justify-content:center;border:2px solid var(--pencil);border-radius:6px;background:#fff;font:14px var(--minc)}
+.rlane.op .rslot{background:#fbe7e1}.rlane.me .rslot{background:#e3eef8}
+.rarrows{display:flex;gap:8px;margin-left:calc(3em + 8px)}
+.rarrows i{width:68px;height:22px;position:relative}
+.rarrows i{background:linear-gradient(var(--pencil),var(--pencil)) center/2.5px calc(100% - 4px) no-repeat}
+.rarrows i::before,.rarrows i::after{content:'';position:absolute;left:calc(50% - 4.5px);width:9px;height:9px;border-left:2.5px solid var(--pencil);border-top:2.5px solid var(--pencil);box-sizing:border-box}
+.rarrows i::before{top:1px;transform:rotate(45deg)}
+.rarrows i::after{bottom:1px;transform:rotate(-135deg)}
+/* アタックと反撃 */
+.rfight{display:flex;align-items:center;justify-content:center;gap:8px}
+.rfc{width:84px;padding:10px 4px;border:2px solid var(--pencil);border-radius:7px;text-align:center;font:13px var(--minc)}
+.rfc b{display:block;font-weight:400;font-size:16px;margin-top:2px}
+.rfc.me{background:#e3eef8}.rfc.op{background:#fbe7e1}
+.rfa{display:flex;flex-direction:column;gap:8px;min-width:120px}
+.rfa span{position:relative;display:block;padding:2px 0;font-size:12px;font-weight:700;text-align:center;border-bottom:2.5px solid currentColor}
+.rfa span::after{content:'';position:absolute;bottom:-6.5px;width:9px;height:9px;border-top:2.5px solid currentColor;border-right:2.5px solid currentColor}
+.rfa .go{color:var(--me)}.rfa .go::after{right:0;transform:rotate(45deg)}
+.rfa .back{color:var(--op)}.rfa .back::after{left:0;transform:rotate(-135deg)}
+/* 共鳴の図 */
+.rreso{display:flex;align-items:center;justify-content:center;gap:0;padding:8px 0}
+.rum{position:relative;width:64px;height:84px;border:3px solid var(--ec);border-radius:7px;background:#fff;display:flex;align-items:center;justify-content:center}
+.rum b{font:22px var(--minc);color:var(--ec)}
+.rum .seal{position:absolute;top:50%;width:24px;height:24px;margin-top:-12px;z-index:2}
+.rum .seal.l{left:-13px}.rum .seal.r{right:-13px}
+.rlink{width:44px;display:flex;justify-content:center;position:relative}
+.rlink span{font:12px var(--minc);color:var(--ink3);margin-top:-46px}
+.rlink.on::before{content:'';position:absolute;left:-4px;right:-4px;top:50%;height:6px;margin-top:-3px;background:var(--brass);border-radius:3px;box-shadow:0 0 8px var(--brass)}
+.rlink.on span{color:var(--brassd);font-weight:700}
+.rdot{flex:none;display:flex;gap:3px}
+.rdot i{width:15px;height:21px;border-radius:3px;border:2px solid var(--pencil);background:var(--a)}
+.rfull{flex:none;display:flex;align-items:center;gap:2px}
+.rfull i{width:12px;height:20px;border:2px solid var(--pencil);border-radius:3px;background:#fff}
+.rfull i:nth-child(2){background:var(--brass);height:26px}
+.rseals{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:6px}
+.rseals div{display:flex;align-items:center;gap:8px;padding:6px 10px;background:#fff;border:1.5px solid var(--line2);border-radius:6px}
+.rseals .seal{width:28px;height:28px}
+.rseals b{font:16px var(--minc)}
+.rseals span{font-size:12px;color:var(--ink2);line-height:1.4}
+/* お絵かきカード */
+.rsteps{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.rsteps li{position:relative;display:flex;flex-direction:column;align-items:center;text-align:center;gap:3px;padding:10px 6px;background:#fff;border:2px solid var(--pencil);border-radius:8px 6px 9px 6px;margin:0!important}
+.rsteps li:not(:last-child)::after{content:'';position:absolute;right:-13px;top:50%;margin-top:-6px;border:6px solid transparent;border-left:8px solid var(--pencil)}
+.rsteps i{width:26px;height:26px;border-radius:50%;background:var(--brass);border:2px solid var(--pencil);font:400 14px/22px var(--minc);font-style:normal}
+.rsteps b{font:14px var(--minc)}
+.rsteps span{font-size:11px;line-height:1.4;color:var(--ink2)}
+.rwords{margin:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:6px}
+.rwords div{padding:7px 10px;background:#fff;border:1.5px solid var(--line2);border-left:5px solid var(--brass);border-radius:5px}
+.rwords dt{font:14px var(--minc);color:var(--ink)}
+.rwords dd{margin:2px 0 0;font-size:12px;line-height:1.55;color:var(--ink2)}
+/* ゲージ */
+.rgauge{display:flex;align-items:center;gap:4px;justify-content:center;margin-bottom:10px}
+.rgauge i{width:22px;height:22px;border:2px solid var(--pencil);border-radius:50%;background:#fff}
+.rgauge i.on{background:var(--soul)}
+.rgauge span{margin-left:6px;font:14px var(--minc);color:var(--ink2)}
+.ruse{display:flex;flex-direction:column;gap:6px}
+.ruse>div{display:flex;align-items:center;gap:12px;padding:8px 12px;background:#fff;border:2px solid var(--pencil);border-radius:8px 6px 9px 6px}
+.rg{flex:none;min-width:58px;padding:4px 6px;text-align:center;border-radius:6px;background:var(--soul);color:#fff;font:400 20px/1.1 var(--minc)}
+.rg small{font-size:12px;margin-left:1px}
+.ruse b:not(.rg){display:block;font:15px var(--minc)}
+.ruse span{display:block;font-size:12px;line-height:1.5;color:var(--ink2)}

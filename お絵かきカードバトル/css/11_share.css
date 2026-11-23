@@ -1,0 +1,26 @@
+/* ---------- Xに投稿 ---------- */
+/* Xに投稿のボタン（ユーザーの「個性診断」の「𝕏 でシェアする」と同じ形：黒地・白いふち・黒い影） */
+.btn.xbtn{background:#111!important;color:#fff!important;border:3px solid #fff!important;border-radius:12px;
+  box-shadow:0 0 0 2px #111,3px 4px 0 2px #111!important;font-family:"Dela Gothic One",var(--minc)!important;font-size:17px!important;letter-spacing:.06em;white-space:nowrap}
+.btn.xbtn:active{transform:translate(3px,4px);box-shadow:0 0 0 2px #111!important}
+.btn.xbtn:disabled{opacity:.5}
+.xbtn .xm{font-family:"Segoe UI Symbol","Cambria Math","Apple Symbols","Noto Sans Math",sans-serif;font-size:1.2em;line-height:1;vertical-align:-.08em;margin-right:.15em}
+/* カードを作った直後の「投稿する？」 */
+.askpost{display:flex;flex-direction:column;align-items:center;gap:8px}
+.askpost .sub{margin:0;text-align:center}
+.askpost .dbig{padding:4px 12px}
+.shpv{width:min(100%,71vh);aspect-ratio:16/9;margin:10px auto 0;display:flex;align-items:center;justify-content:center;border:1px solid #cbbd9c;border-radius:3px;background:var(--mat);overflow:hidden}
+/* 長押し・右クリックでも画像を保存できるように */
+.shpv img{display:block;width:100%;height:100%;object-fit:contain;-webkit-touch-callout:default;user-select:auto;-webkit-user-select:auto}
+.shtx{margin-top:10px;padding:7px 9px;font-size:12.5px;line-height:1.6;white-space:pre-wrap;overflow-wrap:anywhere;background:var(--mat);border:1px dashed var(--line2);border-radius:3px;user-select:text;-webkit-user-select:text}
+.shmsg{margin:10px 0 0;font-size:12.5px;line-height:1.6;min-height:1.6em}
+.shlink{display:block;margin-top:8px;text-align:center;text-decoration:none}
+.shlink[hidden]{display:none}
+/* 低い画面では中身だけ動かし、ボタンはいつも下に見せる */
+.mbox.share{padding-bottom:0}
+.share .mbtns{position:sticky;bottom:0;margin-top:6px;padding:10px 0 18px;background:#fffdf7;z-index:1}
+.share .mbtns .btn{min-width:112px;padding:12px 6px}
+@media (max-height:480px){
+  .share .mbtns{flex-wrap:nowrap;padding:8px 0 10px}
+  .share .mbtns .btn{min-width:0;padding:9px 4px}
+}

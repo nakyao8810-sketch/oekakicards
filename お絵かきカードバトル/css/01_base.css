@@ -1,0 +1,31 @@
+/* スケッチブックの紙：白っぽい画用紙＋うすい方眼＋えんぴつのらくがき */
+:root{
+  --mat:#fbf8f1;--line:rgba(70,60,48,.2);--line2:rgba(70,60,48,.42);
+  --paper:#efe6d2;--paper2:#e3d7bc;--ink:#2a241c;--ink2:#6b5f4c;--ink3:#9a8f7c;
+  --brass:#f0b53f;--brassd:#9a6a12;--verm:#b8432f;--txt:#2f2a24;--sub:#6f6658;
+  --me:#2f74b0;--op:#c4553d;--soul:#8a6cc0;--en:#3c8fc8;--pencil:#3b342c;
+  /* お絵かきっぽい字：見出し・名前・数字はマジックペン風（Yusei Magic）、文はえんぴつ風（Yomogi） */
+  --minc:"Yusei Magic","Zen Kaku Gothic New","Hiragino Maru Gothic ProN","Yu Gothic UI",sans-serif;
+  --goth:"Yomogi","Zen Kaku Gothic New","Hiragino Maru Gothic ProN","Yu Gothic UI","Meiryo",sans-serif;
+}
+/* 手書きの字は太字を作ると読みにくいので、太さは字そのものにまかせる */
+h1,h2,h3,h4,h5,.btn,.plate .nm,.dkn,.cst span,.lifebox b,.coin{font-synthesis:none}
+.btn{font-family:var(--minc)!important;font-weight:400!important;letter-spacing:.04em}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;height:100%;color:var(--txt);font-family:var(--goth);overflow:hidden;touch-action:manipulation;user-select:none;-webkit-user-select:none}
+body{background-color:var(--mat);background-image:
+  url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='460' height='460' fill='none' stroke='%235a5045' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round' opacity='.17'%3E%3Cpath d='M52 30l9 21 23 2-17 15 6 22-21-12-20 12 6-22-17-15 23-2z'/%3E%3Cpath d='M330 72c0-8 12-8 12 1 0 14-24 14-24-2 0-20 36-20 36 3 0 26-48 26-48-4'/%3E%3Cpath d='M170 262c-14 0-16-20-2-21 2-15 26-16 29-2 13-3 20 15 7 20 1 10-12 13-18 6-5 6-17 5-16-3z'/%3E%3Cpath d='M392 352c-10-14-30-2-18 14l18 16 18-16c12-16-8-28-18-14z'/%3E%3Cpath d='M40 360c12-12 22 12 34 0s22 12 34 0 22 12 34 0'/%3E%3Ccircle cx='262' cy='404' r='13'/%3E%3Cpath d='M262 378v-8M262 438v-8M236 404h-8M296 404h-8M244 386l-6-6M286 428l-6-6M280 386l6-6M238 428l6-6'/%3E%3Cpath d='M430 190l-14 22h12l-10 20'/%3E%3C/svg%3E"),
+  linear-gradient(rgba(70,110,160,.09) 1px,transparent 1px),linear-gradient(90deg,rgba(70,110,160,.09) 1px,transparent 1px),
+  url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .35 0 0 0 0 .3 0 0 0 0 .22 0 0 0 .06 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size:460px 460px,24px 24px,24px 24px,180px 180px;background-attachment:fixed}
+button{font-family:inherit}
+#app{height:100%;height:100dvh;max-width:720px;margin:0 auto;display:flex;flex-direction:column;overflow:hidden}
+.btn{font-family:var(--goth);background:#fffdf7;color:var(--ink);border:2px solid var(--pencil);border-radius:6px 5px 7px 5px;padding:9px 14px;font-size:14px;font-weight:700;box-shadow:2px 3px 0 var(--pencil);cursor:pointer;line-height:1.2}
+.btn:active{transform:translate(2px,3px);box-shadow:none}
+.btn.pri{background:var(--brass);border-color:var(--pencil);box-shadow:2px 3px 0 var(--pencil)}
+.btn.red{background:var(--verm);color:#fff8ec;border-color:var(--pencil);box-shadow:2px 3px 0 var(--pencil)}
+.btn.ghost{background:rgba(255,253,247,.6);color:var(--txt);border:2px dashed var(--line2);box-shadow:none}
+.btn:disabled{opacity:.35;cursor:default;transform:none}
+.btn small{display:block;font-size:10px;font-weight:400;opacity:.75;margin-top:1px}
+.sub{color:var(--sub);font-size:12px}
+

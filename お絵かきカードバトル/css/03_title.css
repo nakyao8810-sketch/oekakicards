@@ -1,0 +1,25 @@
+/* ---------- タイトル ---------- */
+.title{flex:1;min-height:0;overflow-y:auto;display:flex;flex-direction:column;align-items:center;gap:12px;padding:20px;text-align:center}
+/* 高さがあれば真ん中、足りなければ上からスクロール（justify-content:center だと上が切れて届かない） */
+.title>*{flex:none}
+.title>:first-child{margin-top:auto}.title>:last-child{margin-bottom:auto}
+.tlane{width:min(370px,94vw);height:150px;display:grid;grid-template-columns:minmax(0,1fr) 22px minmax(0,1fr) 22px minmax(0,1fr);align-items:center;margin-bottom:14px}
+.tlane .card{height:100%;z-index:1}
+.title h1{font-family:var(--minc);font-weight:600;font-size:clamp(24px,7.8vw,40px);margin:0;letter-spacing:.06em;color:var(--txt);white-space:nowrap;
+  background:linear-gradient(transparent 62%,rgba(240,181,63,.55) 62% 90%,transparent 90%);padding:0 .2em}
+.title .lead{font-size:13px;color:var(--sub);margin:0 0 12px;letter-spacing:.06em}
+.title .btn{width:min(300px,84vw);padding:13px;font-size:15px}
+.title .row{display:flex;gap:10px;width:min(300px,84vw)}
+.title .row .btn{flex:1;font-size:13px;padding:10px}
+.ver{font-size:11px;color:#8a8070;margin-top:6px;letter-spacing:.1em}
+/* スマホの横持ち：ボタンを2列にして1画面に収める */
+@media (max-height:480px) and (min-width:600px){
+  .title{display:grid;grid-template-columns:repeat(2,minmax(0,300px));justify-content:center;align-content:safe center;gap:8px 12px;padding:10px 20px}
+  .title>:first-child,.title>:last-child{margin:0}
+  .title h1,.title .lead,.title .row,.title .ver,.title>.btn.pri{grid-column:1/-1;justify-self:center}
+  .title h1{font-size:30px}
+  .title .lead{margin:0}
+  .title .btn{width:100%;padding:8px}
+  .title>.btn.pri,.title .row{width:min(612px,100%)}
+}
+

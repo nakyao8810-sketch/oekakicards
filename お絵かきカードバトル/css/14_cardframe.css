@@ -1,0 +1,135 @@
+/* ---------- カードの枠（2026-11-23 ユーザーの見本をベースに） ----------
+   あざやかな属性色の太い枠／左上に大きなコストの丸・太字の名前・右上に属性のメダル／
+   絵のらん（属性色のうすい背景）に効果のらんを重ねる（「共鳴」「2G」の札）／
+   下にこい色の ATK 板・明るい HP 板・あいだにカード番号／左右の印はふちにまたがる丸
+   部品の大きさはカードの大きさから決める（.card を container にして cqmin で） */
+.card.m,.card.t{
+  container-type:size;
+  --ef:var(--ec);
+  --efd:color-mix(in srgb,var(--ef) 52%,#000);--efdd:color-mix(in srgb,var(--ef) 34%,#000);
+  --efl:color-mix(in srgb,var(--ef) 52%,#fff);--efp:color-mix(in srgb,var(--ef) 13%,#fff);
+  --cardf:"Zen Kaku Gothic New","Hiragino Sans","Yu Gothic UI","Meiryo",sans-serif;
+  /* 部品の大きさ（使う所で .card の大きさから計算される） */
+  --cs:clamp(16px,12.5cqmin,38px);   /* コストの丸 */
+  --es:clamp(15px,11cqmin,34px);     /* 属性のメダル */
+  --nf:clamp(10.5px,7cqmin,21px);    /* 名前の字 */
+  --ss:clamp(15px,10cqmin,30px);     /* 左右の印 */
+  --sh:clamp(18px,11cqmin,34px);     /* ATK/HP の板の高さ */
+  --sf:clamp(13px,9cqmin,27px);      /* ATK/HP の数字 */
+  --tf:clamp(8px,4.4cqw,13px);       /* 効果のらんの字 */
+  --fp:5px;                          /* 枠の太さ */
+  background:
+    repeating-linear-gradient(118deg,rgba(255,255,255,.07) 0 2px,transparent 2px 9px),
+    linear-gradient(155deg,var(--efl) 0%,var(--ef) 30%,var(--ef) 68%,var(--efd) 100%);
+  border:1.5px solid var(--efdd);border-radius:9px;padding:var(--fp) var(--fp) calc(var(--fp) - 1px);
+  box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.38),0 1px 0 rgba(0,0,0,.35),0 5px 10px rgba(0,0,0,.3);
+  color:#1b1815}
+/* 枠の色（属性の色をあざやかに） */
+.card.e-fire{--ef:#cf3f2a}
+.card.e-water{--ef:#2a7bcb}
+.card.e-thunder{--ef:#e09312}
+.card.e-forest{--ef:#3a9441}
+.card.e-light{--ef:#c9a640}
+.card.e-dark{--ef:#6d45ad}
+.card.t{--ef:#5f6b78}
+.card.t.mt{--ef:#4c6f92}
+.card.res{box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.38),0 0 0 2.5px var(--brass),0 5px 10px rgba(0,0,0,.3)}
+
+/* 名前の帯：左に大きなコストの丸、右に属性のメダル */
+.card .plate{position:relative;z-index:2;flex:none;display:flex;align-items:center;gap:calc(var(--cs)*.18);
+  min-height:calc(var(--cs)*.8);margin:0 0 3px;padding:1px calc(var(--es)*.12) 1px 0;
+  background:linear-gradient(180deg,#fff 0%,#fff 45%,var(--efp) 100%);color:#1b1815;
+  border-radius:calc(var(--cs)*.5) calc(var(--es)*.5) calc(var(--es)*.5) calc(var(--cs)*.5);
+  box-shadow:0 0 0 1.5px var(--efdd),inset 0 -2px 0 rgba(0,0,0,.07)}
+.card .plate .nm{flex:1;min-width:0;text-align:left;color:#1b1815;font:900 var(--nf)/1.08 var(--cardf);letter-spacing:.03em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.card .coin,.card .eli{flex:none;box-sizing:border-box;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;
+  background:radial-gradient(circle at 36% 30%,var(--efl),var(--ef) 48%,var(--efd));
+  box-shadow:0 0 0 1.5px var(--efdd),0 1px 2px rgba(0,0,0,.35)}
+.card .coin{width:var(--cs);height:var(--cs);margin:calc(var(--cs)*-.12) 0;border:calc(var(--cs)*.09) solid #fff;
+  color:#fff;font:900 calc(var(--cs)*.58)/1 var(--cardf);text-shadow:0 1px 0 rgba(0,0,0,.35)}
+.card .eli{width:var(--es);height:var(--es);margin:calc(var(--es)*-.1) calc(var(--es)*-.12) calc(var(--es)*-.1) auto;border:calc(var(--es)*.08) solid #fff}
+.card .eli .ei{width:58%;height:58%;fill:#fff}
+.card .spm{margin-left:0;width:calc(var(--es)*.8);height:calc(var(--es)*.8);font-size:calc(var(--es)*.5);line-height:calc(var(--es)*.8)}
+
+/* 絵のらん */
+.card .cbody{position:relative;flex:1 1 0;min-height:0;padding:0;gap:0;border-radius:5px;overflow:hidden;display:flex;flex-direction:column;
+  background:radial-gradient(120% 95% at 50% 36%,#fff 0%,var(--efp) 55%,color-mix(in srgb,var(--ef) 30%,#fff) 100%);
+  box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.85),0 0 0 1.5px var(--efdd)}
+.card .cart{flex:1 1 0;min-height:12px;margin:0!important;border-radius:0}
+.card .cnone{display:flex;align-items:center;justify-content:center;overflow:hidden}
+.card .cnone .ei{height:62%;max-height:none;width:auto;fill:var(--ef);opacity:.2}
+
+/* 効果のらん：絵の下のほうに白いらんを重ねる */
+.card .cfxbox{position:absolute;left:4%;right:4%;bottom:4%;z-index:1;margin:0;padding:.45em .6em;border-radius:6px;
+  background:rgba(255,255,255,.9);box-shadow:0 1px 3px rgba(0,0,0,.22);display:flex;flex-direction:column;gap:0;font-size:var(--tf)}
+.card .crt,.card .csp{display:flex;align-items:center;gap:.5em;min-width:0;font-size:1em;line-height:1.25;color:#1b1815;padding:.28em 0}
+.card .csp{border-top:1px solid rgba(0,0,0,.13)}
+.card .crt span,.card .csp span{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-weight:700;font-family:var(--cardf)}
+.card .crt.on{color:#1b1815}
+.card .crt.on::before{content:none}
+.card .pill{flex:none;display:inline-block;min-width:3.1em;text-align:center;font:700 .86em/1.5 var(--cardf);padding:0 .5em;border-radius:3px;
+  background:var(--efd);color:#fff;letter-spacing:.04em}
+.card .crt.on .pill,.card .csp.ok .pill{background:var(--brass);color:var(--ink)}
+.card.t .cfxbox{gap:.3em}
+.card.t .cfxbox .pill{align-self:flex-start}
+.card.t .ctx{font:700 1em/1.35 var(--cardf);color:#1b1815}
+.card.t .cbody:not(:has(.cart)) .cfxbox{position:static;flex:1 1 auto;margin:4%;box-shadow:none;background:rgba(255,255,255,.7)}
+
+/* ATK／番号／HP */
+.card .cst{flex:none;display:flex;align-items:stretch;justify-content:space-between;gap:3px;height:var(--sh);padding:0;margin-top:3px}
+.card .cst span{display:flex;align-items:center;gap:.18em;height:auto;min-width:0;border-radius:4px;box-shadow:none;
+  font:900 var(--sf)/1 var(--cardf);letter-spacing:0}
+.card .cst i{font:700 calc(var(--sf)*.42)/1 var(--cardf);font-style:normal;opacity:.85;margin-right:.1em}
+.card .cst .atk{background:linear-gradient(180deg,color-mix(in srgb,var(--ef) 62%,#000),var(--efdd));color:#fff;
+  clip-path:polygon(0 0,84% 0,100% 50%,84% 100%,0 100%);padding:0 calc(var(--sh)*.55) 0 calc(var(--sh)*.25);
+  box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.25)}
+.card .cst .hp{background:linear-gradient(180deg,#fff,var(--efp));color:#1b1815;
+  clip-path:polygon(16% 0,100% 0,100% 100%,16% 100%,0 50%);padding:0 calc(var(--sh)*.25) 0 calc(var(--sh)*.55);
+  box-shadow:inset 0 0 0 1.5px var(--efd)}
+.card .cst .hp i{opacity:.6}
+.card .cst .atk.up{background:linear-gradient(180deg,#f3c45a,#b07a14);color:#2a1d05;box-shadow:none}
+.card .cst .hp.hurt{background:linear-gradient(180deg,#fde3dc,#f4c3b7);color:#a3271d}
+.card .cst .cno{flex:1;justify-content:center;background:none!important;padding:0;clip-path:none;box-shadow:none!important;
+  font:700 calc(var(--sf)*.36)/1 var(--cardf);color:rgba(255,255,255,.88);letter-spacing:.08em;text-shadow:0 1px 0 rgba(0,0,0,.3)}
+.card.t .cst{justify-content:center;height:calc(var(--sh)*.5)}
+
+/* 左右の印：ふちにまたがる丸 */
+.card .seal.tab{position:absolute;top:50%;z-index:3;width:var(--ss);height:var(--ss);margin-top:calc(var(--ss)/-2);border-radius:50%;font-size:calc(var(--ss)*.5);
+  border:calc(var(--ss)*.1) solid #fff;box-shadow:0 0 0 1.5px rgba(0,0,0,.42),0 2px 3px rgba(0,0,0,.3)}
+.card .seal.tab.l{left:calc(var(--ss)*-.42)}.card .seal.tab.r{right:calc(var(--ss)*-.42)}
+.seal{border-radius:50%}
+.seal .si{width:62%;height:62%;fill:#fff}
+
+/* 小さいカード（手札・一覧）：枠を細く、効果のらんは絵の下に */
+.card.mini{--fp:3px;border-radius:7px}
+.card.mini .plate{margin-bottom:2px}
+.card.mini .plate .nm{white-space:normal;letter-spacing:0}
+.card.mini .eli{display:none}   /* 名前を広く（属性は枠の色で分かる） */
+.card.mini .cfxbox{position:static;flex:none;margin:0;padding:1px 3px;border-radius:0 0 4px 4px;box-shadow:none;background:rgba(255,255,255,.92);font-size:8px}
+.card.mini .crt,.card.mini .csp{padding:1px 0;gap:3px}
+.card.mini .pill{min-width:0;padding:0 3px;font-size:7px;line-height:11px}
+.card.mini .cst{margin-top:2px}
+.card.mini .cst .cno{display:none}
+.card.mini.t .cfxbox{flex:1 1 auto}
+.card.mini.t .ctx{font-size:8.5px;line-height:1.25}
+.card.mini .seal.tab.l{left:calc(var(--ss)*-.28)}.card.mini .seal.tab.r{right:calc(var(--ss)*-.28)}
+
+/* 場のカード：名前は2行まで折り返す。絵つきは文字を出さず、ATK/HP を絵に重ねる */
+.slot .card .plate .nm{white-space:normal;max-height:2.2em}
+.slot .card .cst .cno{display:none}
+.slot .card.m:not(.fa) .crt{flex:none}
+.slot .card.fa .cst{position:absolute;left:calc(var(--fp) + 2px);right:calc(var(--fp) + 2px);bottom:calc(var(--fp) + 2px);margin:0;z-index:2;pointer-events:none}
+.slot .card.fa .cst span{filter:drop-shadow(0 1px 1px rgba(0,0,0,.35))}
+
+/* くわしい画面：左に大きいカード、右に ATK/HP・プロフィール */
+.dtop{display:flex;gap:10px;align-items:flex-start;margin-bottom:2px}
+.dbig{flex:none;padding:2px 12px 4px}
+.dside{flex:1;min-width:0;display:flex;flex-direction:column;gap:8px}
+.dside .dprof{margin:0}
+.clist .dtop{flex-direction:column;align-items:center}
+.clist .dside{align-self:stretch}
+.clist .card.big{--bh:270px}
+@media (max-width:480px){.dbig .card.big{--bh:min(220px,40vh)}}
+/* くわしい画面の大きいカード */
+.card.big{--fp:7px;--bh:min(300px,46vh);height:var(--bh);width:calc(var(--bh)*.716);flex:none;border-radius:12px;
+  --cs:15cqmin;--es:13.5cqmin;--nf:8.6cqmin;--ss:12.5cqmin;--sh:14cqmin;--sf:12cqmin;--tf:clamp(9px,5cqw,13px)}

@@ -1,0 +1,32 @@
+/* ---------- デッキ編成 ---------- */
+.edscr{flex:1;overflow-y:auto;padding:0 10px calc(18px + env(safe-area-inset-bottom))}
+.edhead{position:sticky;top:0;z-index:10;margin:0 -10px;padding:10px 10px 8px;background:var(--mat);border-bottom:2px dashed var(--line2);display:flex;flex-direction:column;gap:7px}
+.edtop{display:flex;align-items:center;gap:6px}
+.edtop .btn{padding:6px 10px;font-size:12.5px}
+.edname{flex:1;min-width:0;font:600 18px var(--minc);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;letter-spacing:.04em}
+.edstat{display:flex;align-items:flex-end;gap:10px;justify-content:space-between}
+.edcnt{display:flex;flex-direction:column;gap:1px;font-size:12px;color:var(--sub)}
+.edcnt b{font:600 17px var(--minc);color:var(--txt);margin-left:2px}
+.edcnt .ok b{color:#2f7a3e}
+.edcnt .ok::after{content:'OK';margin-left:5px;font-size:9.5px;font-weight:700;color:#fff;background:#2f7a3e;border-radius:2px;padding:0 4px;vertical-align:2px}
+.curve{display:flex;align-items:flex-end;gap:3px;height:58px;padding:0 2px}
+.curve div{display:flex;flex-direction:column;align-items:center;justify-content:flex-end;width:16px;height:100%}
+.curve i{display:block;width:12px;background:var(--brass);border:1.5px solid var(--pencil);border-bottom:0;border-radius:2px 2px 0 0;min-height:0}
+.curve em{font-style:normal;font-size:9px;color:var(--sub);order:-1;line-height:1.1}
+.curve small{font-size:9.5px;color:var(--sub);border-top:1.5px solid var(--pencil);width:100%;text-align:center}
+.edbtns{display:flex;gap:6px}
+.edbtns .btn{flex:1;padding:6px 8px;font-size:12px}
+.edtabs{display:flex;gap:5px;overflow-x:auto;scrollbar-width:none}
+.edtabs::-webkit-scrollbar{display:none}
+.edtabs .btn{flex:none;padding:5px 10px;font-size:12px;font-weight:400;box-shadow:none;border-width:1.5px}
+.edtabs .btn.on{background:var(--brass);font-weight:700}
+/* カード一覧を1つの重なりにまとめる（枚数の丸や印がスクロールしても上の帯の手前に出ないように） */
+.edgrid{position:relative;z-index:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(84px,1fr));gap:12px 8px;padding-top:12px}
+.edc{display:flex;flex-direction:column;align-items:center;gap:5px}
+.edv{position:relative;cursor:pointer}
+.edc .card.mini{width:80px;height:110px}
+.edc:not(.in) .card{opacity:.82}
+.edn{position:absolute;top:-8px;right:-7px;width:24px;height:24px;border-radius:50%;background:var(--verm);color:#fff8ec;border:2px solid var(--pencil);display:flex;align-items:center;justify-content:center;font:600 14px/1 var(--minc);z-index:5}
+.edq{display:flex;align-items:center;gap:4px}
+.edq .btn{width:28px;height:26px;padding:0;font-size:16px;line-height:1;box-shadow:1px 2px 0 var(--pencil)}
+.edq b{min-width:16px;text-align:center;font:600 15px var(--minc)}

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+<meta name="theme-color" content="#fbf8f1">
+<title>お絵かきカードバトル</title>
+<!-- URLを貼ったときに出るカード（X・LINEなど）。公開したURLが変わったら、og:url と og:image・twitter:image の3か所を直す -->
+<meta name="description" content="かいた絵が、そのままカードになる。絵をかくと名前と能力が決まり、となりと「共鳴」させて戦うカードバトル。CPU・オンラインで対戦できます。">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="お絵かきカードバトル">
+<meta property="og:title" content="お絵かきカードバトル">
+<meta property="og:description" content="かいた絵が、そのままカードになる。絵をかいて、自分だけのカードで戦おう。">
+<meta property="og:url" content="https://oekaki-card-battle.pages.dev/">
+<meta property="og:image" content="https://oekaki-card-battle.pages.dev/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="お絵かきカードバトル　かいた絵が、そのままカードになる。">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="お絵かきカードバトル">
+<meta name="twitter:description" content="かいた絵が、そのままカードになる。絵をかいて、自分だけのカードで戦おう。">
+<meta name="twitter:image" content="https://oekaki-card-battle.pages.dev/og.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Yusei+Magic&family=Yomogi&family=Zen+Kaku+Gothic+New:wght@400;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/01_base.css">
+<link rel="stylesheet" href="css/02_card.css">
+<link rel="stylesheet" href="css/03_title.css">
+<link rel="stylesheet" href="css/04_deck.css">
+<link rel="stylesheet" href="css/05_game.css">
+<link rel="stylesheet" href="css/06_sheet.css">
+<link rel="stylesheet" href="css/07_dialog.css">
+<link rel="stylesheet" href="css/08_effects.css">
+<link rel="stylesheet" href="css/09_drawcard.css">
+<link rel="stylesheet" href="css/10_deckedit.css">
+<link rel="stylesheet" href="css/11_share.css">
+<link rel="stylesheet" href="css/12_online.css">
+<link rel="stylesheet" href="css/13_landscape.css">
+<link rel="stylesheet" href="css/14_cardframe.css">
+<link rel="stylesheet" href="css/15_rules_filter.css">
+</head>
+<body>
+<div id="app"></div>
+<div id="sheet"></div>
+<div id="modal"></div>
+<script src="js/doodlenet/weights.js"></script>
+<script src="js/doodlenet/weights_extra.js"></script>
+<script src="js/doodlenet/doodlenet.js"></script>
+<script src="js/data/rules_cards_decks.js"></script>
+<script src="js/game/engine.js"></script>
+<script src="js/game/cpu.js"></script>
+<script src="js/game/cpu_strong.js"></script>
+<script src="js/ui/sound.js"></script>
+<script src="js/ui/render.js"></script>
+<script src="js/ui/filter.js"></script>
+<script src="js/ui/effects.js"></script>
+<script src="js/ui/dialogs.js"></script>
+<script src="js/ui/flow.js"></script>
+<script src="js/ui/target.js"></script>
+<script src="js/ui/menus.js"></script>
+<script src="js/drawcard/util.js"></script>
+<script src="js/drawcard/names.js"></script>
+<script src="js/drawcard/labels.js"></script>
+<script src="js/drawcard/templates.js"></script>
+<script src="js/drawcard/pad.js"></script>
+<script src="js/drawcard/random.js"></script>
+<script src="js/drawcard/analyze.js"></script>
+<script src="js/drawcard/recognize.js"></script>
+<script src="js/drawcard/moves.js"></script>
+<script src="js/drawcard/objects.js"></script>
+<script src="js/drawcard/know_life.js"></script>
+<script src="js/drawcard/know_world.js"></script>
+<script src="js/drawcard/know_things.js"></script>
+<script src="js/drawcard/know.js"></script>
+<script src="js/drawcard/wordsense_data.js"></script>
+<script src="js/drawcard/wordsense.js"></script>
+<script src="js/drawcard/naming.js"></script>
+<script src="js/drawcard/moves2.js"></script>
+<script src="js/drawcard/makecard.js"></script>
+<script src="js/drawcard/tactics.js"></script>
+<script src="js/drawcard/storage.js"></script>
+<script src="js/drawcard/basicart.js"></script>
+<script src="js/drawcard/share.js"></script>
+<script src="js/drawcard/screens.js"></script>
+<script src="js/ui/input.js"></script>
+<script src="js/ui/deckedit.js"></script>
+<script src="js/online/cards.js"></script>
+<script src="js/online/relay.js"></script>
+<script src="js/online/match.js"></script>
+<script src="js/online/session.js"></script>
+<script src="js/online/screens.js"></script>
+<script src="js/dev/sim.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>

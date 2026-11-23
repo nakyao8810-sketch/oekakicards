@@ -1,0 +1,88 @@
+/* ---------- お絵かきカード ---------- */
+.cart{flex:1 1 0;min-height:12px;background:center/contain no-repeat}
+.dart{height:150px;margin:-2px 0 8px;background:#fbf8f0 center/contain no-repeat;border:1px solid #cbbd9c;border-radius:2px}
+.dseen{margin-top:6px;font-size:11.5px;color:var(--ink2)}
+/* キャラのプロフィール（図鑑の説明のように） */
+.dprof{margin:-2px 0 8px;font-size:12px;line-height:1.7;color:var(--ink2);padding:5px 8px;background:rgba(255,253,246,.7);border-left:3px solid var(--ec,#8c7b58);border-radius:0 2px 2px 0}
+.mygrid{display:flex;flex-wrap:wrap;gap:12px}
+.myc{position:relative;cursor:pointer}
+.myc .card.mini{width:96px;height:134px}
+.myc .off{position:absolute;left:50%;bottom:-7px;transform:translateX(-50%);font-size:9px;background:#3a3f44;color:#f6efe0;padding:0 5px;border-radius:2px;white-space:nowrap}
+/* カードの枠・場のカード（名前の折り返し、絵つきは ATK/HP を絵に重ねる）は 14_cardframe.css */
+.spm{flex:none;margin-left:auto;width:16px;height:16px;border-radius:50%;background:var(--brass);color:var(--ink);font:800 10px/16px var(--minc);text-align:center;box-shadow:0 0 0 1.5px #f7f0e1}
+/* お絵かきタクティクス：絵が入る・色を少し変える */
+.card.t.mt{--ec:#5b6a7a}
+.card.t .cart{min-height:18px}
+.card.mini.t .ctx{font-size:8.5px;line-height:1.25}
+/* つくるカードの切りかえ */
+.kindsw{display:flex;align-items:center;justify-content:center;gap:6px;font-size:12px;color:var(--sub)}
+.kindsw .btn{padding:6px 14px;font-size:13px;font-weight:400;box-shadow:none;border-width:1.5px}
+.kindsw .btn.on{background:var(--brass);font-weight:700;box-shadow:2px 3px 0 var(--pencil);border-width:2px}
+.drawscr{flex:1;overflow-y:auto;padding:8px 6px calc(16px + env(safe-area-inset-bottom));display:flex;flex-direction:column;gap:8px}
+/* 紙と道具。せまい画面は上下、広い画面（PC・タブレット横）は紙を左に大きく、道具を右に */
+.dwork{display:flex;flex-direction:column;gap:10px}
+.dpadcol{display:flex;flex-direction:column;gap:6px;min-width:0}
+.dtop{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.dtop b{font-family:var(--minc);font-size:18px;letter-spacing:.06em}
+.padw{position:relative;flex:none;width:min(100%,max(260px,calc(100dvh - 190px)));aspect-ratio:1/1;margin:0 auto;border:1px solid #8c7b58;border-radius:3px;overflow:hidden;box-shadow:0 5px 12px rgba(0,0,0,.4);
+  background-color:#fbf8f0}   /* 方眼はキャンバスにかく（ズームといっしょに大きくなる） */
+#pad{position:absolute;inset:0;width:100%;height:100%;touch-action:none;cursor:crosshair;display:block}
+/* ズームのボタン（紙の右上） */
+.zctl{position:absolute;top:6px;right:6px;display:flex;align-items:center;gap:4px;z-index:2}
+.zctl .btn{min-width:30px;height:28px;padding:0 7px;font-size:14px;line-height:1;box-shadow:1px 2px 0 var(--pencil);border-width:1.5px;background:rgba(255,253,247,.92)}
+.zctl .btn[disabled]{display:none}
+#dzlv{font:600 12px var(--minc);color:var(--ink2);background:rgba(255,253,247,.85);padding:1px 5px;border-radius:3px}
+#dzlv:empty{display:none}
+.padw .scan{position:absolute;left:0;right:0;top:0;height:3px;background:var(--brassd);opacity:0;pointer-events:none}
+.padw.scanning .scan{opacity:.9;animation:scan 1.2s linear infinite}
+@keyframes scan{from{top:0}to{top:calc(100% - 3px)}}
+.dtools{display:flex;flex-direction:column;gap:8px;width:min(100%,520px);margin:0 auto}
+.drow2{display:flex;flex-wrap:wrap;gap:6px;align-items:center;justify-content:center}
+.drow2 .btn{padding:6px 10px;font-size:12.5px;font-weight:400}
+.drow2 .btn.on{background:var(--brass);font-weight:700}
+.drow2 .btn.ghost.on{background:transparent}
+.dt{display:inline-block;border-radius:50%;background:currentColor;vertical-align:middle}
+.sw{width:30px;height:30px;border-radius:50%;border:2px solid rgba(0,0,0,.3);padding:0;cursor:pointer}
+.sw.on{box-shadow:0 0 0 2px var(--mat),0 0 0 4px var(--brass)}
+.drow2 .btn[disabled]{opacity:.45}
+.drow2 .shp{display:inline-flex;align-items:center;gap:4px;padding:6px 8px}
+.ic{display:inline-block;width:13px;height:13px;border:2px solid currentColor;flex:none}
+.ic2{width:15px;height:15px;flex:none}
+.dhint{margin:0;text-align:center;font-size:11.5px;color:var(--sub)}
+.dlb{font-size:12px;color:var(--sub);margin-right:2px}
+/* カラーパレット：「いろ」ボタンで開く（広い画面ではいつも開いている） */
+.curc{display:inline-flex;align-items:center;gap:6px}
+.curc i{display:block;width:18px;height:18px;border-radius:50%;background:var(--cc,#2b2b2b);border:2px solid rgba(0,0,0,.35)}
+.curc.dim i{opacity:.35}
+.pal{display:none;flex-direction:column;gap:8px;padding:8px;background:#fffdf6;border:1.5px solid var(--line2);border-radius:6px}
+.pal.open{display:flex}
+.palg{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:4px}
+.palg .sw{width:100%;height:auto;aspect-ratio:1/1;border-width:1px;border-radius:4px}
+.palg .sw.on{box-shadow:0 0 0 2px #fffdf6,0 0 0 4px var(--pencil)}
+.palr{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.palrc{display:flex;gap:5px;flex-wrap:wrap;flex:1;min-width:0}
+.palrc .sw{width:26px;height:26px}
+.palc{position:relative;overflow:hidden}
+.palc input{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:pointer;border:0;padding:0}
+@media (min-width:900px) and (min-aspect-ratio:5/4){
+  #app.draww{max-width:1320px}
+  .dwork{flex-direction:row;align-items:flex-start;justify-content:center;gap:18px}
+  .padw{width:min(calc(100dvh - 150px),calc(100vw - 530px));margin:0}
+  .dtools{width:460px;flex:none;margin:0}
+  .pal{display:flex}
+  .curc{pointer-events:none;box-shadow:none}
+  .judgeb{width:100%}
+}
+.drow2 .btn.ghost[data-act="dmirror"].on{background:#e3eefa;border-style:solid;border-color:#2f6fc4;color:#1f4f8f}
+.ic-c{border-radius:50%}.ic-r{border-radius:1px}.ic-l{height:0;border-width:2px 0 0;transform:rotate(-35deg)}
+.tplgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(78px,1fr));gap:8px;margin-top:10px;max-height:min(56vh,430px);overflow-y:auto;padding:2px}
+.tplb{display:flex;flex-direction:column;align-items:center;gap:2px;padding:6px 4px 5px;background:#fbf8f0;border:1px solid #cbbd9c;border-radius:3px;color:#33404a;font:700 12px var(--goth);cursor:pointer}
+.tplb svg{width:100%;max-width:64px;aspect-ratio:1/1}
+.tplb.on{border-color:var(--brassd);box-shadow:0 0 0 2px var(--brass)}
+.judgeb{width:min(100%,520px);margin:0 auto;padding:13px;font-size:16px;letter-spacing:.2em;flex:none}
+.rkwhy{margin-top:10px;font-size:12px;line-height:1.7;color:var(--ink2);background:var(--paper2);padding:6px 9px;border-radius:2px}
+.rkin{width:100%;margin-top:10px;font:700 18px var(--goth);padding:8px 10px;border:1px solid #8c7b58;border-radius:3px;background:#fffdf6;color:var(--ink);user-select:text;-webkit-user-select:text}
+@media (min-height:760px){.lane{max-height:236px}.hand{height:130px}.plate .nm{font-size:14px}.crt{font-size:10.5px}}
+/* 縦に長い大きな画面（タブレット縦向きなど）は場をもっと高く */
+@media (min-height:960px){.lane{max-height:none}}
+@media (prefers-reduced-motion:reduce){*{animation-duration:.01s!important;transition:none!important}}

@@ -1,0 +1,23 @@
+/* ---------- デッキ選択 ---------- */
+.deckscr{flex:1;overflow-y:auto;padding:16px 14px 24px}
+.deckscr h2{font-family:var(--minc);font-size:20px;margin:4px 0 12px;letter-spacing:.06em}
+.deckscr h3{font-size:12px;margin:18px 0 8px;color:var(--sub);letter-spacing:.12em;font-weight:700;border-bottom:1px solid var(--line);padding-bottom:4px}
+.dk{display:flex;align-items:center;gap:12px;background:rgba(255,253,247,.82);border:2px solid var(--line2);border-radius:6px;padding:10px 12px;margin-bottom:8px;cursor:pointer;position:relative}
+.dk.on{border-color:var(--pencil);background:#fff4d8;box-shadow:2px 3px 0 var(--pencil)}
+.dk.on::after{content:'選択中';position:absolute;top:-8px;left:10px;font-size:9px;background:var(--brass);color:var(--ink);padding:0 5px;border-radius:2px;font-weight:700}
+.dk .dkn{font-family:var(--minc);font-weight:800;font-size:16px;letter-spacing:.04em}
+.dk .dkd{font-size:12px;color:var(--sub);margin-top:2px}
+.dk .dkb{flex:1}
+.dk .els{display:flex;flex-direction:column;gap:3px}
+.dk .els .seal{width:18px;height:18px;font-size:10px}
+.dk .btn{padding:6px 10px;font-size:12px}
+/* CPUの強さ */
+.lvsel{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.lvsel .btn{padding:10px 8px;text-align:center;line-height:1.3}
+.lvsel .btn b{display:block;font-size:17px;font-weight:400}
+.lvsel .btn small{font-size:11px}
+.lvsel .btn.on{background:var(--brass)}
+.lvsel .btn[data-lv="strong"].on{background:var(--verm);color:#fff8ec}
+.deckscr .go{display:flex;gap:10px;margin-top:20px}
+.deckscr .go .btn{flex:1;padding:13px;font-size:15px}
+
